@@ -1,0 +1,4 @@
+# Add any directories, files, or patterns you don't want to be tracked by version control
+
+/Sapnil_RAT_trojan_tools/build/
+/Sapnil_RAT_trojan_tools/target/
