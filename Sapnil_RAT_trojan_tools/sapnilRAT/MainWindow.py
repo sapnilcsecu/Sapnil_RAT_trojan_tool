@@ -9,7 +9,11 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QTableWidgetItem
+from PyQt5.QtWidgets import QTableWidgetItem,QMenu
+from PyQt5.QtCore import Qt
+from subclasstablewiget import TableWidget
+
+
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -34,7 +38,8 @@ class Ui_Form(object):
         font.setWeight(75)
         self.label_3.setFont(font)
         self.label_3.setObjectName("label_3")
-        self.tableWidget = QtWidgets.QTableWidget(Form)
+        #self.tableWidget = QtWidgets.QTableWidget(Form)
+        self.tableWidget = TableWidget(Form)
         self.tableWidget.setGeometry(QtCore.QRect(0, 160, 671, 192))
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setColumnCount(3)
@@ -45,16 +50,30 @@ class Ui_Form(object):
         for i in range(5):
             for j in range(3) :
                 self.tableWidget.setItem(i, j, QTableWidgetItem("nasir"))
-
-        # Resize of the rows and columns based on the content
-        self.tableWidget.resizeColumnsToContents()
-        self.tableWidget.resizeRowsToContents()
-
-        # Display the table
-        self.tableWidget.show()
+        self.tableWidget.horizontalHeader().setCascadingSectionResizes(True)
+        self.tableWidget.horizontalHeader().setStretchLastSection(True)
+        #self.tableWidget.setContextMenuPolicy(Qt.CustomContextMenu)
+        #self.tableWidget.customContextMenuRequested.connect(self.contextMenuEvent)
+        
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
+    
+    #def contextMenuEvent(self, pos):
+        #contextMenu = QMenu(self)
+        #contextMenu = QMenu()
+        #newAct = contextMenu.addAction("New")
+        #openAct = contextMenu.addAction("Open")
+        #quitAct = contextMenu.addAction("Quit")
+       # action = contextMenu.exec_(self.tableWidget.mapToGlobal(pos))
+        #contextMenu.popup(self.tableWidget.viewport().mapToGlobal(pos))
+       # if action == quitAct:
+            #self.close()
+            
+            
+            
+            
+            
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
